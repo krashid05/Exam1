@@ -4,31 +4,37 @@
 # Due Date: 09/24/ 2023
 # Purpose: Tax laws are incredibly complicated. To help cope, you will write a program to do some
 # of the heavy lifting.
+income = float(input("Enter annual income: $"))
 
-income = float(input("Enter made income:$ "))
+# Calculate income tax based on income
 if income < 10000:
-    tax = 2.3 * income / 100
-elif income <= 500000:
-    tax = 4.5 * income / 100
+    tax = 0.023 * income
+elif income <= 50000:
+    tax = 0.045 * income
 else:
-    tax = 6.1 * income / 100
+    tax = 0.061 * income
 
-maritalStatus = input('Enter marital status married?(y/n): ')
-if maritalStatus.lower() == 'y':
-    tax -= 24.62
-    input("How long you have been married: ")
-elif maritalStatus.lower()== 'n':
-    tax += 0
+# marital status
+marital_status = input("Are you married (y/n): ").lower()
 
-elevation = input('Enter current elevation (below/at/above sea level): ')
-if elevation.lower() == 'below' or elevation.lower() == 'below sea level':
+
+if marital_status == "y":
+    years_married = int(input("How many years have you been married: "))
+    tax -= 1.62 * years_married
+
+#current elevation
+elevation = input("Enter current elevation (below-1/at-2/above sea level-3): ").lower()
+
+
+if "1" in elevation:
     tax += 18.32
-elif elevation.lower() == 'above' or elevation.lower() == 'above sea level':
-    bedrooms = float(input("How many bedrooms do you have: "))
+elif "2" in elevation:
+    tax += 0.016 * income
+elif "3" in elevation:
+    bedrooms = int(input("How many bedrooms do you have: "))
     tax += 5.00 * bedrooms
-else:
-    tax *= 1.6
 
+# Display the total tax amount
 total_tax = float(tax)
-print("Total tax", total_tax)
+print("Total tax owed for the year: $", total_tax)
 
